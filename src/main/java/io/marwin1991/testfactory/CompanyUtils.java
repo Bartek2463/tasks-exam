@@ -7,7 +7,23 @@ public class CompanyUtils {
      * Throws an IllegalArgumentException when given invalid input
      */
     public static char getChar(Employer actor) {
-        throw new RuntimeException("Not impl");
+        if (actor instanceof Boss){
+            return 'B';
+        }
+        if (actor==null){
+            return '.';
+        }
+        Employer.Department department = actor.getDepartment();
+        switch (department){
+            case FACTORY :
+                return 'F';
+            case HR:
+                return 'H';
+            case SALES:
+                return 'S';
+
+        }
+        throw new IllegalArgumentException("Bad data ");
     }
 
 
@@ -15,6 +31,16 @@ public class CompanyUtils {
      * Returns the amount of steps a employer has to make in order to get from pos1 to pos2
      */
     public static int getDistance(Vector pos1, Vector pos2) {
-        throw new RuntimeException("Not impl");
+        int posX = pos1.getX() - pos2.getX();
+        System.out.println(posX);
+        int posY = pos1.getY() - pos2.getY();
+        System.out.println(posY);
+        return Math.abs(posX)+Math.abs(posY);
+    }
+
+    public static void main(String[] args) {
+        Vector vector = new Vector(-3,2);
+        Vector vector1 = new Vector(5,-4);
+        System.out.println(getDistance(vector, vector1));
     }
 }

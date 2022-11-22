@@ -7,11 +7,12 @@ import java.util.Queue;
 /**
  * Static class for creating new employers instances
  */
-public class CompanyFactory {
+public  class CompanyFactory {
 
     /**
      * A predefined collection of names for the employers
      */
+
     private static final Queue<String> names = new LinkedList<>(Arrays.asList(
             "Marcel", "Moises", "Zane", "Dashawn", "Sean", "Rashad", "Seth", "Oliver", "Chris", "Quinton",
             "August", "Yusuf", "Jeramiah", "Bryce", "Rory", "Preston", "Eli", "Elisha", "Vicente", "Cristian",
@@ -25,6 +26,7 @@ public class CompanyFactory {
      *
      * @return name
      */
+
     public static String getName() {
         return names.peek();
     }
@@ -34,7 +36,18 @@ public class CompanyFactory {
      *
      */
     public static Employer createPlayer(Employer.Department department) {
-        throw new RuntimeException("Not impl");
+
+        Employer employer = new Employer();
+        employer.setDepartment(department);
+        employer.setName(getName());
+        System.out.println(employer);
+        return employer;
+    }
+
+    public static void main(String[] args) {
+        createPlayer(Employer.Department.SALES).toString();
+        createPlayer(Employer.Department.HR).toString();
+        createPlayer(Employer.Department.FACTORY).toString();
     }
 
 
@@ -42,6 +55,16 @@ public class CompanyFactory {
      * Returns an Employer instance, depending on given character
      */
     public static Employer createFromChar(char c) {
-        throw new RuntimeException("Not impl");
+
+        switch (c){
+            case 'F':
+               return createPlayer(Employer.Department.FACTORY);
+            case 'H':
+                return createPlayer(Employer.Department.HR);
+            case 'S':
+                return createPlayer(Employer.Department.SALES);
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 }
