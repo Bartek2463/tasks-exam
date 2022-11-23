@@ -1,8 +1,7 @@
 package io.marwin1991.testfactory;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Static class for creating new employers instances
@@ -12,6 +11,12 @@ public  class CompanyFactory {
     /**
      * A predefined collection of names for the employers
      */
+
+    public  static final List<Employer> employers = new ArrayList<>(Arrays.asList(
+            createPlayer(Employer.Department.HR),
+            createPlayer(Employer.Department.SALES),
+            createPlayer(Employer.Department.FACTORY)
+    ));
 
     private static final Queue<String> names = new LinkedList<>(Arrays.asList(
             "Marcel", "Moises", "Zane", "Dashawn", "Sean", "Rashad", "Seth", "Oliver", "Chris", "Quinton",
@@ -28,7 +33,7 @@ public  class CompanyFactory {
      */
 
     public static String getName() {
-        return names.peek();
+        return names.stream().findFirst().get();
     }
 
     /**
@@ -40,14 +45,12 @@ public  class CompanyFactory {
         Employer employer = new Employer();
         employer.setDepartment(department);
         employer.setName(getName());
-        System.out.println(employer);
         return employer;
     }
 
+
     public static void main(String[] args) {
-        createPlayer(Employer.Department.SALES).toString();
-        createPlayer(Employer.Department.HR).toString();
-        createPlayer(Employer.Department.FACTORY).toString();
+        System.out.println(employers);
     }
 
 
@@ -66,5 +69,8 @@ public  class CompanyFactory {
             default:
                 throw new IllegalArgumentException();
         }
+
     }
+
+
 }

@@ -66,7 +66,7 @@ public class Employer {
     /**
      * Returns employer result which is perDayInput multiplay by (20 - daysOff) if daysOff is 0 plus 5
      */
-    public int getResult(int perDayInput) {
+    public int getResult() {
        return daysOff==0 ? perDayInput*(20-daysOff)+5 : perDayInput*(20-daysOff);
     }
 
